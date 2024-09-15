@@ -23,7 +23,7 @@ def submit():
         ydl_opts = {
             'format': 'best',
             'outtmpl': os.path.join(download_path, '%(title)s.%(ext)s'),
-        }
+            'cookiefile': 'cookies.txt'},
 
         # Baixar o vídeo
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -63,6 +63,7 @@ def submit2():
                 'preferredcodec': 'mp3',
                 'preferredquality': '192',
             }],
+            'cookiefile': 'cookies.txt',
             'ffmpeg_location': 'C:\\ffmpeg\\bin'
         }
 
