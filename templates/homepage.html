@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>VM Downloader</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{url_for('static',
+        filename='css/styles.css')}}"
+    </head>
+    <body>
+        <div id="loading" class="loading-overlay">
+            <div class="loadtext">Baixando e convertendo, aguarde...</div>
+            <div class="spinner-overlay">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    
+        <div class="MP4">
+            <form id="videoForm" action="/submit" method="POST" target="_blank">
+                <div class="lb-input">
+                    <label>Baixador de Videos</label>
+                    <input
+                        type="text"
+                        id="videoUrl"
+                        name="videoUrl"
+                        placeholder="Insira o link do YouTube"
+                    />
+                </div>
+                <button type="submit" class="btn btn-3 btn-sep">Baixar Video MP4</button>
+            </form>
+        </div>
+    
+        <div class="MP3">
+            <form id="audioForm" action="/submit2" method="post" target="_blank">
+                <div class="lb-input">
+                    <label>Baixador de Músicas</label>
+                    <input
+                        type="text"
+                        id="videoUrl2"
+                        name="videoUrl"
+                        placeholder="Insira o link do YouTube"
+                    />
+                </div>
+                <button type="submit" class="btn btn-3 btn-sep">Baixar Áudio MP3</button>
+            </form>
+        </div>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+    </body>
+</html>
