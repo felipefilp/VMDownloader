@@ -1,6 +1,7 @@
 import os
 from flask import Flask, redirect, request, render_template, jsonify, send_from_directory, url_for
 import yt_dlp
+import imageio_ffmpeg as ffmpeg
 
 app = Flask(__name__)
 
@@ -53,7 +54,9 @@ def submit2():
         download_path = os.path.join(os.getcwd(), 'downloads')
         if not os.path.exists(download_path):
             os.makedirs(download_path)
-
+        # Localizar o caminho do ffmpeg automaticamente
+        ffmpeg_path = ffmpeg.get_ffmpeg_exe()
+        
         # Configuração do yt-dlp para baixar apenas o áudio e convertê-lo para MP3
         ydl_opts = {
             'format': 'bestaudio/best',
@@ -64,9 +67,9 @@ def submit2():
                 'preferredquality': '192',
             }],
             'cookiefile': 'cookies.txt',
-            'ffmpeg_location': 'C:\\ffmpeg\\bin'
+            'ffmpeg_location': ffmpeg_path
         }
-
+        
         # Baixar o vídeo
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(video_url)
@@ -93,4 +96,4 @@ def download_file(filename):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
